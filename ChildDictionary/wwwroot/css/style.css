@@ -1,0 +1,93 @@
+body
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.family
+{
+	position: absolute;
+	width: 76rem;
+	margin-top: 20%;
+}
+
+.plane
+{
+	position: absolute;
+	width: 40rem;
+	transform: rotate(13deg);
+	margin-left: 30%;
+}
+
+.searchbar
+{
+	position: relative;
+	z-index: 100;
+}
+
+.reading
+{
+	position: absolute;
+	margin-left: 82%;
+	margin-top: 35%;
+	width: 26rem;
+}
+
+.arkaresim
+{
+	
+	position: absolute;
+}
+
+.background
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -100;
+	width: 110rem;
+}
+
+.searchbox
+{
+	height: 3rem;
+	width: 40rem;
+	margin-top: 22rem;
+	margin-left: 35rem;
+}
+
+.lang
+{
+	margin-top: 0.5rem;
+	margin-left: 35rem;
+}
+
+.searchbutton
+{
+	position: absolute;
+	font-size: 1rem;
+	width: 7rem;
+	height: 3rem;
+	margin-top:	22rem;
+	margin-left: 0.5rem;
+}
+
+.wrapper{
+    position: absolute;
+}
+
+
+.portrait {
+	height: 100px;
+	width: 100px;
+}
+
+.landscape {
+	height: 30px;
+	width: 80px;
+}
+
+.square {
+	height: 100px;
+	width: 100px;
+}

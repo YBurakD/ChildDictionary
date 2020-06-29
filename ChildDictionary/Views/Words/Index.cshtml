@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ChildDictionary.Models.Words>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<p>
+    <a asp-action="Create">Add New Words</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WordTurkish)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WordEnglish)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Meaning)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img class="portrait" src="@Url.Content("~/img/WordImg/" + @item.ImagePath)" alt="">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WordTurkish)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WordEnglish)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Meaning)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

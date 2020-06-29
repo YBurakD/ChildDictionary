@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model ChildDictionary.Models.Words
+@if (Model == null)
+{
+    <form asp-controller="Home" asp-action="Index">
+        <p>
+            <input type="text" name="SearchString">
+            <input type="submit" value="Filter" />
+            <select id="Language" name="Language">
+                <option selected ="selected" value="0">Turkish-English</option>
+                <option value="1">English-Turkish</option>
+            </select>
+        </p>
+    </form>
+    @if(TempData["Error"] != null)
+    {
+        <p>@TempData["Error"]</p>
+    }
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImagePath)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WordTurkish)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WordEnglish)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Meaning)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <img class="portrait" src="@Url.Content("~/img/WordImg/" + Model.ImagePath)" alt="">
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.WordTurkish)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.WordEnglish)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Meaning)
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+}
