@@ -27,10 +27,10 @@ namespace ChildDictionary
         {
             services.AddControllersWithViews();
 
-           services.AddDbContext<ChildDictionaryContext>(options =>
-                  options.UseSqlServer(Configuration.GetConnectionString("ChildDictionaryContext")));
            //services.AddDbContext<ChildDictionaryContext>(options =>
-             //   options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
+             //     options.UseSqlServer(Configuration.GetConnectionString("ChildDictionaryContext")));
+           services.AddDbContext<ChildDictionaryContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
