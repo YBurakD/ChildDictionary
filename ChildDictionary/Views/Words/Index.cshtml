@@ -5,11 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <nav class="navbar navbar-dark bg-dark">
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="form-inline" asp-controller="Words" asp-action="Index">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="SearchString">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        @if(TempData["Search"].ToString() == "1"){
+        <a class="btn btn-primary" style="margin-left:5px" asp-action="Index">Back to List</a>
+    }
     </form>
     <a class="btn btn-primary" asp-action="Create">Add New Words</a>
+
 </nav>
 
 <table class="table">
@@ -34,26 +38,26 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <img class="portrait" src="@Url.Content("~/img/WordImg/" + @item.ImagePath)" alt="">
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WordTurkish)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WordEnglish)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Meaning)
-                </td>
+        <tr>
+            <td>
+                <img class="portrait" src="@Url.Content("~/img/WordImg/" + @item.ImagePath)" alt="">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WordTurkish)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WordEnglish)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Meaning)
+            </td>
 
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

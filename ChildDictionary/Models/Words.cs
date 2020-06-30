@@ -11,6 +11,7 @@ namespace ChildDictionary.Models
     {
         [Key]
         public int Id { get; set; }
+        
         public string WordEnglish { get; set; }
         public string WordTurkish { get; set; }
         public string Meaning { get; set; }

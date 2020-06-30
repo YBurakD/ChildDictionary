@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using ChildDictionary.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace ChildDictionary.Controllers
 {
@@ -25,9 +26,29 @@ namespace ChildDictionary.Controllers
 
         // GET: Words
         //[Authorize(Roles = "Teacher")]
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
+            TempData["Search"] = 0;
             return View(await _context.Words.ToListAsync());
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(string SearchString)
+        {
+            if (SearchString != null)
+            {
+                var list = await (from word in _context.Words
+                                  where word.WordTurkish.Contains(SearchString) || word.WordEnglish.Contains(SearchString) || word.Meaning.Contains(SearchString)
+                                  select word).ToListAsync();
+                TempData["Search"] = 1;
+                return View(list);
+            }
+            else
+            {
+                TempData["Search"] = 1;
+                await _context.Words.ToListAsync();
+                return View(await _context.Words.ToListAsync());
+            }
         }
 
         //[Authorize(Roles = "Teacher")]
