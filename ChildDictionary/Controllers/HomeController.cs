@@ -17,8 +17,10 @@ namespace ChildDictionary.Controllers
         {
             _context = context;
         }
+        [HttpGet]
         public IActionResult Index()
         {
+            TempData["Error"] = "";
             return View();
         }
         [HttpPost]
@@ -35,8 +37,12 @@ namespace ChildDictionary.Controllers
             }
             if (word == null)
             {
-                TempData["Error"] = "Nothing found.";
+                TempData["Error"] = "hata.png";
                 return View();
+            }
+            else
+            {
+                TempData["Lang"] = Language;
             }
             return View(word);
         }
