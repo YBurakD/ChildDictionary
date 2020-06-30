@@ -4,58 +4,65 @@
 @model ChildDictionary.Models.Words
 @if (Model == null)
 {
-    <form asp-controller="Home" asp-action="Index">
+    @if (TempData["Error"].ToString() == "")
+    {
+        <div class="background">
+            <img src="~/img/background.svg" id="background" alt="Background with grass and clouds" class="arkaresim">
+            <img src="~/img/reading.svg" id="reading" alt="Family reading book" class="reading">
+            <img src="~/img/family.svg" id="family" alt="Stick Figure Family" class="family">
+            <img src="~/img/plane.svg" id="plane" alt="Plane" class="plane">
+        </div>
+        <form asp-controller="Home" asp-action="Index" id="myform">
+            <p>
+                <input type="text" class="searchbox" id="searchbox" name="SearchString">
+                <input type="submit" class="searchbutton" id="searchbutton" value="Search" onclick="deneme()" />
+                <select id="language" class="lang" name="Language">
+                    <option selected="selected" value="0">Turkish-English</option>
+                    <option value="1">English-Turkish</option>
+                </select>
+            </p>
+        </form>
+    }
+    else
+    {
+        <div class="background">
+            <img src="~/img/background.svg" id="background" alt="Background with grass and clouds" class="arkaresim">
+        </div>
+        <form asp-controller="Home" asp-action="Index" id="myform">
+            <p>
+                <input type="text" class="searchboxafter" id="searchbox" name="SearchString">
+                <input type="submit" class="searchbuttonafter" id="searchbutton" value="Search" onclick="deneme()" />
+                <select id="language" class="langafter" name="Language">
+                    <option selected="selected" value="0">Turkish-English</option>
+                    <option value="1">English-Turkish</option>
+                </select>
+            </p>
+        </form>
+        <img class="hata" src="img/@TempData["Error"]" alt="hata">
+    }
+
+}
+else
+{
+    <div class="background">
+        <img src="~/img/background.svg" id="background" alt="Background with grass and clouds" class="arkaresim">
+    </div>
+    <form asp-controller="Home" asp-action="Index" id="myform">
         <p>
-            <input type="text" name="SearchString">
-            <input type="submit" value="Filter" />
-            <select id="Language" name="Language">
-                <option selected ="selected" value="0">Turkish-English</option>
+            <input type="text" class="searchboxafter" id="searchbox" name="SearchString">
+            <input type="submit" class="searchbuttonafter" id="searchbutton" value="Search" onclick="deneme()" />
+            <select id="language" class="langafter" name="Language">
+                <option selected="selected" value="0">Turkish-English</option>
                 <option value="1">English-Turkish</option>
             </select>
         </p>
     </form>
-    @if(TempData["Error"] != null)
-    {
-        <p>@TempData["Error"]</p>
-    }
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ImagePath)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.WordTurkish)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.WordEnglish)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Meaning)
-                </th>
 
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <img class="portrait" src="@Url.Content("~/img/WordImg/" + Model.ImagePath)" alt="">
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.WordTurkish)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.WordEnglish)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.Meaning)
-                </td>
-            </tr>
+    <div class="sonuc">
+        <img class="portrait" src="@Url.Content("~/img/WordImg/" + Model.ImagePath)" alt="">
+        <p class="wordturkce"> @Html.DisplayFor(model => model.WordTurkish)</p>
+        <p class="wordingilizce"> @Html.DisplayFor(model => model.WordEnglish)</p>
+        <p class="wordanlam">@Html.DisplayFor(model => model.Meaning)</p>
+    </div>
 
-        </tbody>
-    </table>
 }
