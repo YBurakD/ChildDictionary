@@ -40,6 +40,10 @@ namespace ChildDictionary.Controllers
                 TempData["Error"] = "hata.png";
                 return View();
             }
+            else
+            {
+                TempData["Lang"] = Language;
+            }
             return View(word);
         }
         public IActionResult Privacy()
