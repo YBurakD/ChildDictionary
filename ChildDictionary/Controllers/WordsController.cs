@@ -24,13 +24,13 @@ namespace ChildDictionary.Controllers
         }
 
         // GET: Words
-        [Authorize(Roles = "Teacher")]
+        //[Authorize(Roles = "Teacher")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Words.ToListAsync());
         }
 
-        [Authorize(Roles = "Teacher")]
+        //[Authorize(Roles = "Teacher")]
         // GET: Words/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -48,7 +48,7 @@ namespace ChildDictionary.Controllers
 
             return View(words);
         }
-        [Authorize(Roles = "Teacher")]
+        //[Authorize(Roles = "Teacher")]
         // GET: Words/Create
         public IActionResult Create()
         {
@@ -60,7 +60,7 @@ namespace ChildDictionary.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Teacher")]
+        //[Authorize(Roles = "Teacher")]
         public async Task<IActionResult> Create(WordsViewModel words)
         {
             if (ModelState.IsValid)
@@ -92,7 +92,7 @@ namespace ChildDictionary.Controllers
         }
 
         // GET: Words/Edit/5
-        [Authorize(Roles = "Teacher")]
+        //[Authorize(Roles = "Teacher")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -121,7 +121,7 @@ namespace ChildDictionary.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Teacher")]
+        //[Authorize(Roles = "Teacher")]
         public async Task<IActionResult> Edit(int id, WordsViewModel words)
         {
             if (id != words.Id)
@@ -188,7 +188,7 @@ namespace ChildDictionary.Controllers
         }
 
         // GET: Words/Delete/5
-        [Authorize(Roles = "Teacher")]
+        //[Authorize(Roles = "Teacher")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -209,7 +209,7 @@ namespace ChildDictionary.Controllers
         // POST: Words/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Teacher")]
+        //[Authorize(Roles = "Teacher")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var words = await _context.Words.FindAsync(id);
